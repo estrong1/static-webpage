@@ -58,23 +58,4 @@
 		// Add onclick events to the social media icons here if necessary
 	</script>
 </body>
-<script>
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-  const ipUrl = 'https://api.ipify.org?format=json';
-
-  fetch(proxyUrl + ipUrl)
-    .then(response => response.json())
-    .then(data => {
-      const ipAddress = data.ip;
-      const arizonaTime = new Date().toLocaleString("en-US", {timeZone: "America/Phoenix"});
-      const message = `Visitor IP address: ${ipAddress}\nAccessed on: ${arizonaTime}`;
-      const webhookUrl = 'https://discord.com/api/webhooks/1092938102714159254/o025dHEQVPN62bO2LgFI3-fMIU3w0C3-0h7_pYkV5kq0svRQnm6orIBYy6pQaOATRx26';
-      fetch(webhookUrl, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({content: message})
-      });
-    })
-    .catch(error => console.error(error));
-</script>
 </html>
